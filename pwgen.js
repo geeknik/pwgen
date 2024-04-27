@@ -24,17 +24,17 @@ javascript:(function(){
     else if (numbers.includes(char)) stats.numbers++;
     else if (special.includes(char)) stats.special++;
   }
-  var message = 'Your secure password: ' + password +
-                '\n\nPassword Statistics:\n' +
-                'Length: ' + length + ' characters\n' +
-                'Uppercase letters: ' + stats.upper + '\n' +
-                'Lowercase letters: ' + stats.lower + '\n' +
-                'Numbers: ' + stats.numbers + '\n' +
-                'Special characters: ' + stats.special + '\n' +
-                'Entropy Estimates (bits):\n' +
-                '- Window Title: ' + (titleEntropy * 0.5).toFixed(2) + '\n' +
-                '- Document Domain: ' + domainEntropy.toFixed(2) + '\n' +
-                '- Document Referrer: ' + referrerEntropy.toFixed(2) + '\n' +
-                '- User Input: ' + (userEntropy * 0.6).toFixed(2);
+  var message = 'Your secure password is:\n ' + password +
+                '\n\nStatistics:\n' +
+                ' - Length: ' + length + ' characters\n' +
+                ' - Uppercase letters: ' + stats.upper + '\n' +
+                ' - Lowercase letters: ' + stats.lower + '\n' +
+                ' - Numbers: ' + stats.numbers + '\n' +
+                ' - Special characters: ' + stats.special + '\n' +
+                '\nEstimated Entropy (bits):\n' +
+                ' - Window Title: ' + (titleEntropy * 0.5).toFixed(2) + '\n' +
+                ' - Document Domain: ' + domainEntropy.toFixed(2) + '\n' +
+                ' - Document Referrer: ' + referrerEntropy.toFixed(2) + '\n' +
+                ' - User Input: ' + (userEntropy * 0.6).toFixed(2);
   alert(message);
 })();
