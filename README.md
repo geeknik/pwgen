@@ -1,5 +1,7 @@
 ## pwgen,  a secure password generator bookmarklet
 
+![image](https://github.com/geeknik/pwgen/assets/466878/ee455995-ad38-4fde-9e6c-491e875f826d)
+
 ### Overview
 This bookmarklet generates strong, complex passwords directly from your browser. It leverages multiple sources of entropy combined with cryptographically secure random number generation to ensure high-quality, unpredictable password outcomes.
 
