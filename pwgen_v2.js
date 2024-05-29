@@ -45,11 +45,16 @@ javascript:(function(){
     else if (special.includes(char)) stats.special++;
   }
 
-  function shufflePassword(password) {
-    return password.split('').sort(() => Math.random() - 0.5).join('');
+  function shufflePassword(password, entropyBytes) {
+    var array = password.split('');
+    for (var i = array.length - 1; i > 0; i--) {
+      var j = entropyBytes[i] % (i + 1);
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array.join('');
   }
 
-  password = shufflePassword(password);
+  password = shufflePassword(password, entropyBytes);
 
   var message = 'Your secure password is:\n ' + password +
                 '\n\nStatistics:\n' +
