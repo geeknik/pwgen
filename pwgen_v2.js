@@ -21,10 +21,26 @@ javascript:(function(){
   var stats = { upper: 0, lower: 0, numbers: 0, special: 0 };
 
   function getRandomChar(type) {
-    if (type === 'upper') return upper.charAt(Math.floor(Math.random() * upper.length));
-    if (type === 'lower') return lower.charAt(Math.floor(Math.random() * lower.length));
-    if (type === 'numbers') return numbers.charAt(Math.floor(Math.random() * numbers.length));
-    if (type === 'special') return special.charAt(Math.floor(Math.random() * special.length));
+    var array = new Uint32Array(1);
+    window.crypto.getRandomValues(array);
+    var randomIndex;
+
+    if (type === 'upper') {
+      randomIndex = array[0] % upper.length;
+      return upper.charAt(randomIndex);
+    }
+    if (type === 'lower') {
+      randomIndex = array[0] % lower.length;
+      return lower.charAt(randomIndex);
+    }
+    if (type === 'numbers') {
+      randomIndex = array[0] % numbers.length;
+      return numbers.charAt(randomIndex);
+    }
+    if (type === 'special') {
+      randomIndex = array[0] % special.length;
+      return special.charAt(randomIndex);
+    }
   }
 
   var entropyBytes = new Uint8Array(length);
