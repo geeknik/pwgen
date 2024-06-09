@@ -8,14 +8,33 @@ javascript:(function(){
   var referrerEntropy = document.referrer.length;
   var userEntropyText = prompt('Please enter some random text to add personal entropy:', '');
   var userEntropy = userEntropyText.length;
-  var combinedEntropy = getEntropyFromText(document.title + window.location.hostname + document.referrer + userEntropyText).toString();
+
+  var userAgentEntropy = navigator.userAgent.length;
+  var languageEntropy = navigator.language.length;
+  var screenWidthEntropy = window.screen.width.toString().length;
+  var screenHeightEntropy = window.screen.height.toString().length;
+  var pathEntropy = window.location.pathname.length;
+  var timeEntropy = new Date().getTime().toString().length;
+
+  var combinedEntropy = getEntropyFromText(
+    document.title + 
+    window.location.hostname + 
+    document.referrer + 
+    userEntropyText + 
+    navigator.userAgent + 
+    navigator.language + 
+    window.screen.width + 
+    window.screen.height + 
+    window.location.pathname + 
+    new Date().getTime()
+  ).toString();
 
   var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var lower = "abcdefghijklmnopqrstuvwxyz";
   var numbers = "0123456789";
   var special = "!@#$%^&*()_+-=[]{}|;':,.<>?";
   var charset = upper + lower + numbers + special;
-  var length = 32;
+  var length = 56;
 
   var password = '';
   var stats = { upper: 0, lower: 0, numbers: 0, special: 0 };
@@ -83,7 +102,13 @@ javascript:(function(){
                 ' - Window Title: ' + (titleEntropy * 0.5).toFixed(2) + '\n' +
                 ' - Document Domain: ' + domainEntropy.toFixed(2) + '\n' +
                 ' - Document Referrer: ' + referrerEntropy.toFixed(2) + '\n' +
-                ' - User Input: ' + (userEntropy * 0.6).toFixed(2);
+                ' - User Input: ' + (userEntropy * 0.6).toFixed(2) + '\n' +
+                ' - User Agent: ' + (userAgentEntropy * 0.7).toFixed(2) + '\n' +
+                ' - Language: ' + (languageEntropy * 0.3).toFixed(2) + '\n' +
+                ' - Screen Width: ' + (screenWidthEntropy * 0.4).toFixed(2) + '\n' +
+                ' - Screen Height: ' + (screenHeightEntropy * 0.4).toFixed(2) + '\n' +
+                ' - Pathname: ' + (pathEntropy * 0.5).toFixed(2) + '\n' +
+                ' - Current Time: ' + (timeEntropy * 0.2).toFixed(2);
 
   alert(message);
 })();
